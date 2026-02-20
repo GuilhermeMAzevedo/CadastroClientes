@@ -1,14 +1,21 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Model m1 = new Model("1", "Guilherme", "gui@gmail.com", "85987654321");
-        Model m2 = new Model("2", "pedro", "pedro@gmail.com", "85988876543");
-        Model m3 = new Model("3", "joao", "jao@gmail.com", "85987765432");
-        Repository r = new Repository();
-        r.addListModels(m1);
-        r.addListModels(m2);
-        r.addListModels(m3);
-        r.printListModels();
-        r.removeListModels("2");
-        r.printListModels();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1 - Casdastrar");
+        System.out.println("2 - Listar");
+        System.out.println("3 - Atualizar");
+        System.out.println("4 - Deletar");
+        System.out.println("5 - Buscar por ID");
+        System.out.println("0 - Sair");
+        System.out.print("Digite sua escolha: ");
+        byte opcao = sc.nextByte();
+        switch (opcao){
+            case 1:
+
+
+
+        } while (opcao != 0);
     }
 }

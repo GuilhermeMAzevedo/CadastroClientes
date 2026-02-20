@@ -18,24 +18,21 @@ public class Repository {
                 return listModels.get(i);
             }
         }
-
         return null;
     }
 
     public void deleteById(String id){
         Model model = findById(id);
-        if (model != null) {
-            listModels.remove(model);
-        }
+        listModels.remove(model);
     }
 
     public void updateById(String id, String name, String email, String phone){
         Model model = findById(id);
-        if (model != null) {
-            model.setName(name);
-            model.setEmail(email);
-            model.setPhone(phone);
-        }
+
+        model.setName(name);
+        model.setEmail(email);
+        model.setPhone(phone);
+
     }
 
 }
