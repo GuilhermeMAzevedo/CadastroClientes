@@ -20,7 +20,7 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 
 • Listar clientes cadastrados
 
-• Buscar cliente por ID ou CPF
+• Buscar cliente por ID
 
 • Remover cliente
 
@@ -37,13 +37,23 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 ## Estrutura do Projeto
 
 📦 CadastroClientes 
+
  ┣ 📂 src
+ 
  ┃ ┣ 📜 Model.java
+ 
  ┃ ┣ 📜 Repository.java
+ 
  ┃ ┣ 📜 Service.java
+ 
  ┃ ┣ 📜 Main.java
+ 
  ┣ 📜 .gitignore
+
+ ┣ 📜 LICENSE
+ 
  ┗ 📜 README.md
+ 
 
 ## Descrição das Classes
 
@@ -56,28 +66,35 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 • Main.java → Classe principal que executa o sistema.
 
 ## Como Executar o Projeto
-1️⃣ Clonar o repositório
-git clone https://github.com/seu-usuario/cadastro-clientes.git
-2️⃣ Abrir na IDE
+### 1️) Clonar o repositório
+git clone https://github.com/GuilhermeMAzevedo/CadastroClientes.git
+### 2️) Abrir na IDE
 
 Importe o projeto na sua IDE de preferência.
 
-3️⃣ Compilar e executar
+### 3️) Compilar e executar
 
 Se estiver usando terminal:
 
 javac Main.java
 java Main
-💻 Exemplo de Uso
+Exemplo de Uso
 
 Ao executar o programa, o sistema exibirá um menu como:
 
-1 - Cadastrar Cliente
-2 - Listar Clientes
-3 - Buscar Cliente
-4 - Remover Cliente
-5 - Sair
-## 🧠 Conceitos de POO Aplicados
+1 - Cadastrar
+
+2 - Listar
+
+3 - Atualizar
+
+4 - Deletar
+
+5 - Buscar por ID
+
+0 - Sair
+
+## Conceitos de POO Aplicados
 
 • Encapsulamento: atributos privados com getters e setters.
 
@@ -85,7 +102,7 @@ Ao executar o programa, o sistema exibirá um menu como:
 
 • Responsabilidade Única: cada classe possui uma função específica.
 
-## 🧪 Melhorias Futuras
+## Melhorias Futuras
 
 • Persistência em arquivo ou banco de dados
 
@@ -95,8 +112,10 @@ Ao executar o programa, o sistema exibirá um menu como:
 
 • Tratamento de exceções mais robusto
 
-👨‍💻 Autor
+## Autor
 
 Guilherme Moreira Azevedo
-LinkedIn: 
+
+LinkedIn: www.linkedin.com/in/guilhermemoreiraazevedo/
+
 Email: guilhermemoreiraazevedo7@gmail.com
