@@ -61,13 +61,12 @@ public class Service {
 
     public Model findById(String id){
         Model model = repository.findById(id);
-
-        if (id == null) {
+        if (id == null || id.isBlank()) {
             throw new IllegalArgumentException("O campo do ID está vazio");
-        } else if (model == null){
+        } else if (repository.findById(id) == null){
             throw new IllegalArgumentException("ID não encontrado");
         } else {
-            return model;
+            return repository.findById(id);
         }
     }
 }
