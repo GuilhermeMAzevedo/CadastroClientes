@@ -77,7 +77,9 @@ Importe o projeto na sua IDE de preferência.
 Se estiver usando terminal:
 
 javac Main.java
+
 java Main
+
 Exemplo de Uso
 
 Ao executar o programa, o sistema exibirá um menu como:
