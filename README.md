@@ -67,6 +67,8 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 
 ## Como Executar o Projeto
 ### 1️) Clonar o repositório
+Abra o terminal local, copie e cole o comando abaixo:
+
 git clone https://github.com/GuilhermeMAzevedo/CadastroClientes.git
 ### 2️) Abrir na IDE
 
@@ -109,10 +111,6 @@ Ao executar o programa, o sistema exibirá um menu como:
 • Persistência em arquivo ou banco de dados
 
 • Interface gráfica
-
-• Validação de dados
-
-• Tratamento de exceções mais robusto
 
 ## Autor
 
