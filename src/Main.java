@@ -18,14 +18,21 @@ public class Main {
             sc.nextLine();
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o nome: ");
+                    System.out.println("Digite o nome (Ex: João da Silva): ");
                     String nome1 = sc.nextLine();
-                    System.out.println("Digite o email: ");
+                    System.out.println("Digite o email (Ex: joao@exemplo.com): ");
                     String email1 = sc.nextLine();
-                    System.out.println("Digite o telefone: ");
+                    System.out.println("Digite o telefone com o DDD (Ex: 11987654321): ");
                     String telefone1 = sc.nextLine();
+                    try{
+                        s.create(nome1, email1, telefone1);
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Tente novamente");
+                    }
 
-                    s.create(nome1, email1, telefone1);
+                    System.out.println(s.listAll());
+
                     break;
                 case 2:
                     System.out.println(s.listAll());
@@ -33,32 +40,50 @@ public class Main {
                 case 3:
                     System.out.print("Digite o ID que deseja alterar: ");
                     String id3 = sc.nextLine();
-                    System.out.print("Digite o novo nome: ");
+                    System.out.print("Digite o novo nome (Ex: João da Silva): ");
                     String nome3 = sc.nextLine();
-                    System.out.print("Digite o novo email: ");
+                    System.out.print("Digite o novo email (Ex: joao@exemplo.com): ");
                     String email3 = sc.nextLine();
-                    System.out.print("Digite o novo telefone: ");
+                    System.out.print("Digite o novo telefone com o DDD(Ex: 11987654321): ");
                     String telefone3 = sc.nextLine();
-                    s.update(id3, nome3, email3, telefone3);
+                    try {
+                        s.update(id3, nome3, email3, telefone3);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Tente novamente");
+                    }
+
+                    System.out.println(s.listAll());
+
                     break;
                 case 4:
                     System.out.print("Digite o ID que deseja deletar: ");
                     String id4 = sc.nextLine();
-                    s.delete(id4);
+                    try {
+                        s.delete(id4);
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                    }
+
                     System.out.println(s.listAll());
 
                     break;
                 case 5:
                     System.out.print("Digite o ID que deseja buscar: ");
                     String id5 = sc.nextLine();
-                    System.out.println(s.findById(id5));
+                    try {
+                        System.out.println(s.findById(id5));
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Tente novamente");
+                    }
 
                     break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + opcao);
+                    System.out.println("Erro: Digite uma das opções válidas");
             }
         } while (opcao != 0);
         sc.close();
