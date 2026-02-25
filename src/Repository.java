@@ -36,4 +36,8 @@ public class Repository {
 
     }
 
+    public boolean existsByEmail(String email){
+        return listModels.stream()
+                .anyMatch(model -> model.getEmail().equalsIgnoreCase(email));
+    }
 }
