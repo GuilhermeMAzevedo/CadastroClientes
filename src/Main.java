@@ -83,12 +83,18 @@ public class Main {
                     break;
                 case 3:
                     String id3;
+                    try {
+                        s.listAll();
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
                     while (true){
                         try {
                             System.out.print("Digite o ID que deseja alterar: ");
                             id3 = sc.nextLine();
                             Validator.validateId(id3);
-                            s.findById(id3);
+                            System.out.println(s.findById(id3));
                             break;
                         } catch (IllegalArgumentException e){
                             System.out.println(e.getMessage());
@@ -141,6 +147,12 @@ public class Main {
 
                     break;
                 case 4:
+                    try {
+                        System.out.println(s.listAll());
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
                     String id4;
                     while (true){
                         try {
@@ -163,6 +175,12 @@ public class Main {
 
                     break;
                 case 5:
+                    try {
+                        s.listAll();
+                    } catch (IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
                     String id5;
                     while (true){
                         try {
