@@ -121,3 +121,5 @@ Guilherme Moreira Azevedo
 LinkedIn: www.linkedin.com/in/guilhermemoreiraazevedo/
 
 Email: guilhermemoreiraazevedo7@gmail.com
+
+GitHub: https://github.com/GuilhermeMAzevedo
