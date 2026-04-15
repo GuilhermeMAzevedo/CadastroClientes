@@ -2,20 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
-    private List<Model> listModels = new ArrayList<>();
+    private List<Customer> listCustomers = new ArrayList<>();
 
-    public void save(Model model){
-        listModels.add(model);
+    public void save(Customer customer){
+        listCustomers.add(customer);
     }
 
-    public List<Model> findAll(){
-        return List.copyOf(listModels);
+    public List<Customer> findAll(){
+        return List.copyOf(listCustomers);
     }
 
-    public Model findById(String id){
-        for (int i = 0; i < listModels.size(); i++) {
-            if (listModels.get(i).getId().equals(id)){
-                return listModels.get(i);
+    public Customer findById(String id){
+        for (int i = 0; i < listCustomers.size(); i++) {
+            if (listCustomers.get(i).getId().equals(id)){
+                return listCustomers.get(i);
             }
         }
 
@@ -23,21 +23,21 @@ public class Repository {
     }
 
     public void deleteById(String id){
-        Model model = findById(id);
-        listModels.remove(model);
+        Customer customer = findById(id);
+        listCustomers.remove(customer);
     }
 
     public void updateById(String id, String name, String email, String phone){
-        Model model = findById(id);
+        Customer customer = findById(id);
 
-        model.setName(name);
-        model.setEmail(email);
-        model.setPhone(phone);
+        customer.setName(name);
+        customer.setEmail(email);
+        customer.setPhone(phone);
 
     }
 
     public boolean existsByEmail(String email){
-        return listModels.stream()
-                .anyMatch(model -> model.getEmail().equalsIgnoreCase(email));
+        return listCustomers.stream()
+                .anyMatch(customer -> customer.getEmail().equalsIgnoreCase(email));
     }
 }

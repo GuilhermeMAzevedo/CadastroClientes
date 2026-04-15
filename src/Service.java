@@ -12,29 +12,29 @@ public class Service {
         return String.valueOf(counter++);
     }
 
-    public Model create(String name, String email, String phone) {
+    public Customer create(String name, String email, String phone) {
         validateEmailForCreate(email.trim());
         String id = generateId();
-        Model model = new Model(id, name.trim(), email.trim(), phone.trim());
+        Customer customer = new Customer(id, name.trim(), email.trim(), phone.trim());
 
-        repository.save(model);
+        repository.save(customer);
 
-        return model;
+        return customer;
 
     }
 
-    public List<Model> listAll(){
-        List<Model> models = repository.findAll();
-        if (models.isEmpty()){
+    public List<Customer> listAll(){
+        List<Customer> customers = repository.findAll();
+        if (customers.isEmpty()){
             throw new IllegalArgumentException("Nenhum cliente foi cadastrado");
         } else {
-            return models;
+            return customers;
         }
     }
 
     public void update(String id, String name, String email, String phone){
         validateId(id.trim());
-        validateEmailForCreate(email.trim());
+        validateEmailForUpdate(id.trim(), email.trim());
         repository.updateById(id.trim(), name.trim(), email.trim(), phone.trim());
     }
 
@@ -44,11 +44,11 @@ public class Service {
 
     }
 
-    public Model findById(String id){
+    public Customer findById(String id){
         validateId(id);
-        Model model = repository.findById(id.trim());
+        Customer customer = repository.findById(id.trim());
 
-        return model;
+        return customer;
     }
 
     public void validateEmailForCreate(String email){
@@ -56,6 +56,15 @@ public class Service {
 
         if (repository.existsByEmail(email)) {
             throw new IllegalArgumentException("Já existe um cliente com esse E-mail.");
+        }
+    }
+
+    public void validateEmailForUpdate(String id, String email){
+        Validator.validateEmail(email.trim());
+
+        boolean emailInUseByOther = repository.findAll().stream().anyMatch(customer -> customer.getEmail().equalsIgnoreCase(email) && !customer.getId().equals(id));
+        if (emailInUseByOther){
+            throw new IllegalArgumentException("Já existe OUTRO cliente usando esse E-mail.");
         }
     }
 

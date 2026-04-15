@@ -1,10 +1,10 @@
-public class Model {
-    private String id;
+public class Customer {
+    private final String id;
     private String name;
     private String email;
     private String phone;
 
-    public Model (String id,String name,String email,String phone){
+    public Customer(String id, String name, String email, String phone){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -41,10 +41,6 @@ public class Model {
 
     @Override
     public String toString() {
-        return "Customer id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'';
+        return "Customer id: " + id + ", name: " + name + ", email: " + email + ", phone: " + phone;
     }
-
 }

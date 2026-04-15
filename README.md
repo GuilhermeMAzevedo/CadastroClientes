@@ -1,39 +1,28 @@
-# Sistema de Cadastro de Clientes (Java POO)
+# Sistema de Cadastro de Clientes em Java
 Sistema desenvolvido em Java utilizando os princípios de Programação Orientada a Objetos (POO) para realizar o cadastro, listagem, busca e remoção de clientes.
 ## Sobre o Projeto
-### Este projeto tem como objetivo aplicar os conceitos fundamentais de POO em Java, como:
+### Objetivo
+• Este projeto tem como objetivo aplicar os conceitos fundamentais de POO em Java, com foco em demonstrar a construção de um sistema modular e robusto, utilizando apenas Java puro e interface via console.
+### Funcionalidades
+• O sistema permite:
 
-• Classes e Objetos
+• Cadastrar novos clientes com validação de dados.
 
-• Encapsulamento
+• Listar todos os clientes cadastrados.
 
-• Construtores
+• Buscar um cliente específico por ID.
 
-• Métodos
+• Remover um cliente existente.
 
-• Coleções (ArrayList, etc.)
-
-
-### O sistema permite:
-
-• Cadastrar clientes
-
-• Listar clientes cadastrados
-
-• Buscar cliente por ID
-
-• Remover cliente
-
-• Atualizar dados
-
-## Tecnologias Utilizadas
-
+• Atualizar os dados de um cliente.
+### Tecnologias Utilizadas
 • Java (versão 8 ou superior)
 
 • Programação Orientada a Objetos
 
-• IDE IntelliJ
+• Expressões Regulares (Regex)
 
+• IDE IntelliJ
 ## Estrutura do Projeto
 
 📦 CadastroClientes 
@@ -42,7 +31,7 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 
  ┃ ┣ 📜 Main.java
  
- ┃ ┣ 📜 Model.java
+ ┃ ┣ 📜 Customer.java
  
  ┃ ┣ 📜 Repository.java
  
@@ -59,13 +48,15 @@ Sistema desenvolvido em Java utilizando os princípios de Programação Orientad
 
 ## Descrição das Classes
 
-• Model.java → Classe modelo que representa a entidade Cliente.
+• Customer.java → Classe modelo que representa a entidade Cliente, com atributos encapsulados e validação de ID imutável.
 
-• Service.java → Classe responsável pelas regras de negócio.
+• Repository.java → Implementa o padrão Repository, responsável por gerenciar a coleção de clientes em memória (ArrayList), garantindo a imutabilidade na recuperação de listas.
 
-• Repository.java → Classe responsável por armazenar os dados dos clientes.
+• Service.java → Contém as regras de negócio e validações complexas, orquestrando as operações CRUD e utilizando injeção de dependência do Repository.
 
-• Main.java → Classe principal que executa o sistema.
+• Validator.java → Classe utilitária estática para validação de entrada de dados (nome, email, telefone, ID) utilizando expressões regulares e constantes de limite.
+
+• Main.java → Classe principal que fornece a interface de usuário via console, gerencia o fluxo do programa e trata as interações do usuário.
 
 ## Como Executar o Projeto
 ### 1️) Clonar o repositório
@@ -74,46 +65,62 @@ Abra o terminal local, copie e cole o comando abaixo:
 git clone https://github.com/GuilhermeMAzevedo/CadastroClientes.git
 ### 2️) Abrir na IDE
 
-Importe o projeto na sua IDE de preferência.
+Importe o projeto na sua IDE de preferência (Ex: IntelliJ IDEA).
 
 ### 3️) Compilar e executar
 
-Se estiver usando terminal:
+Navegue até a pasta raiz do projeto no terminal.
+Compile o código-fonte:
+javac src/*.java
+Execute a aplicação:
+java src/Main.java
+Alternativamente, execute diretamente pela sua IDE.
 
-javac Main.java
-
-java Main
-
-Exemplo de Uso
+## Exemplo de Uso
 
 Ao executar o programa, o sistema exibirá um menu como:
 
-1 - Cadastrar
+### ==========MENU==========
 
-2 - Listar
+### 1 - Cadastrar Cliente
 
-3 - Atualizar
+### 2 - Listar Clientes
 
-4 - Deletar
+### 3 - Atualizar Dados de um Cliente
 
-5 - Buscar por ID
+### 4 - Deletar Cliente
 
-0 - Sair
+### 5 - Buscar Cliente por ID
 
+### 0 - Sair
+
+### ========================
+
+### Digite a sua escolha:
+
+Siga as instruções para interagir com o sistema, cadastrando, listando, atualizando, deletando ou buscando clientes.
 ## Conceitos de POO Aplicados
 
-• Encapsulamento: atributos privados com getters e setters.
+• Encapsulamento: Atributos das classes são privados e acessados/modificados por métodos públicos (getters e setters), protegendo o estado interno dos objetos. O id do Customer é final, garantindo a imutabilidade.
 
-• Abstração: separação entre modelo e regra de negócio.
+• Abstração: Separação clara das responsabilidades entre as camadas (Model, Repository, Service), onde cada classe expõe apenas o essencial para sua função.
 
-• Responsabilidade Única: cada classe possui uma função específica.
+• Responsabilidade Única (SRP): Cada classe possui uma única responsabilidade bem definida: Customer (dados), Repository (persistência em memória), Service (regras de negócio), Validator (validação de dados), Main (interface de usuário).
 
+• Injeção de Dependência: O Service recebe uma instância de Repository via construtor, promovendo baixo acoplamento e facilitando testes. 
+
+• Tratamento de Exceções: Uso de try-catch para gerenciar erros de entrada do usuário e validações, fornecendo feedback claro e mantendo a robustez do sistema.
+
+• Padrões de Projetos: Implementação dos padrões Repository e Service para organizar a lógica de acesso a dados e regras de negócio. Validator como Utility Class.
 ## Melhorias Futuras
 
-• Persistência em arquivo ou banco de dados
+• Persistência de Dados: Implementar armazenamento em arquivo (CSV, JSON) ou banco de dados (SQL, NoSQL) para que os dados não sejam perdidos ao encerrar o programa.
 
-• Interface gráfica
+• Interface Gráfica (GUI): Desenvolver uma interface de usuário mais amigável utilizando frameworks como Swing, JavaFX ou Spring Boot com web.
 
+• Estruturas de Dados Avançadas: Explorar a aplicação de estruturas de dados como Listas Encadeadas ou Filas de Prioridade para otimizar operações específicas.
+
+•Testes Unitários: Adicionar testes automatizados para garantir a correção e a robustez das funcionalidades do sistema.
 ## Autor
 
 Guilherme Moreira Azevedo
