@@ -1,3 +1,5 @@
+package com.cadastroclientes.util;
+
 import java.util.regex.Pattern;
 
 public class Validator {

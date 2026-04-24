@@ -1,3 +1,5 @@
+package com.cadastroclientes.model;
+
 public class Customer {
     private final String id;
     private String name;

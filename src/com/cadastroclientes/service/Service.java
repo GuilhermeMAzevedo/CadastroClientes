@@ -1,4 +1,9 @@
-import java.util.List;
+package com.cadastroclientes.service;
+
+import com.cadastroclientes.datastructures.LinkedList;
+import com.cadastroclientes.model.Customer;
+import com.cadastroclientes.repository.Repository;
+import com.cadastroclientes.util.Validator;
 
 public class Service {
     private Repository repository;
@@ -23,8 +28,8 @@ public class Service {
 
     }
 
-    public List<Customer> listAll(){
-        List<Customer> customers = repository.findAll();
+    public LinkedList<Customer> listAll(){
+        LinkedList<Customer> customers = repository.findAll();
         if (customers.isEmpty()){
             throw new IllegalArgumentException("Nenhum cliente foi cadastrado");
         } else {
@@ -33,22 +38,31 @@ public class Service {
     }
 
     public void update(String id, String name, String email, String phone){
-        validateId(id.trim());
-        validateEmailForUpdate(id.trim(), email.trim());
-        repository.updateById(id.trim(), name.trim(), email.trim(), phone.trim());
+        Customer customer = repository.findById(id.trim());
+        if (customer == null){
+            throw new IllegalArgumentException("ID não encontrado");
+        } else {
+            validateEmailForUpdate(id.trim(), email.trim());
+            repository.updateById(id.trim(), name.trim(), email.trim(), phone.trim());
+        }
     }
 
     public void delete(String id){
-        validateId(id);
-        repository.deleteById(id.trim());
-
+        Customer customer = repository.findById(id.trim());
+        if (customer == null){
+            throw new IllegalArgumentException("ID não encontrado");
+        } else {
+            repository.deleteById(id.trim());
+        }
     }
 
     public Customer findById(String id){
-        validateId(id);
         Customer customer = repository.findById(id.trim());
-
-        return customer;
+        if (customer == null){
+            throw new IllegalArgumentException("ID não encontrado");
+        } else {
+            return customer;
+        }
     }
 
     public void validateEmailForCreate(String email){
@@ -62,16 +76,12 @@ public class Service {
     public void validateEmailForUpdate(String id, String email){
         Validator.validateEmail(email.trim());
 
-        boolean emailInUseByOther = repository.findAll().stream().anyMatch(customer -> customer.getEmail().equalsIgnoreCase(email) && !customer.getId().equals(id));
-        if (emailInUseByOther){
-            throw new IllegalArgumentException("Já existe OUTRO cliente usando esse E-mail.");
+        for (Customer customer : repository.findAll()){
+            if (customer.getEmail().equalsIgnoreCase(email) && !customer.getId().equalsIgnoreCase(id)){
+                throw new IllegalArgumentException("Já existe um cliente com esse E-mail.");
+            }
         }
     }
 
-    private void validateId(String id){
-        String trimmedId = id.trim();
-        if (repository.findById(trimmedId) == null){
-            throw new IllegalArgumentException("ID não encontrado");
-        }
-    }
+
 }

@@ -1,126 +1,99 @@
 # Sistema de Cadastro de Clientes em Java
-Sistema desenvolvido em Java utilizando os princípios de Programação Orientada a Objetos (POO) para realizar o cadastro, listagem, busca e remoção de clientes.
-## Sobre o Projeto
-### Objetivo
-• Este projeto tem como objetivo aplicar os conceitos fundamentais de POO em Java, com foco em demonstrar a construção de um sistema modular e robusto, utilizando apenas Java puro e interface via console.
-### Funcionalidades
-• O sistema permite:
 
-• Cadastrar novos clientes com validação de dados.
 
-• Listar todos os clientes cadastrados.
+## 1. Introdução
+Este projeto consiste em um sistema robusto de gerenciamento de clientes desenvolvido em Java, com foco primordial nos pilares da Programação Orientada a Objetos (POO) e na modularidade de código. A aplicação foi desenhada para oferecer uma experiência de console fluida, garantindo a integridade dos dados através de camadas rigorosas de validação e uma arquitetura que separa claramente as responsabilidades de negócio, armazenamento e interface.
+## 2. Objetivos do Projeto
+O desenvolvimento deste sistema visou consolidar conhecimentos avançados em engenharia de software, focando nos seguintes pontos:
 
-• Buscar um cliente específico por ID.
+1. Implementação de Estruturas de Dados Personalizadas para gestão eficiente de memória.
 
-• Remover um cliente existente.
+2. Aplicação de padrões de projeto para garantir a escalabilidade do sistema.
 
-• Atualizar os dados de um cliente.
-### Tecnologias Utilizadas
-• Java (versão 8 ou superior)
+3. Criação de uma interface de linha de comando (CLI) resiliente a falhas de entrada do usuário.
 
-• Programação Orientada a Objetos
+4. Garantia de unicidade de registros e integridade de informações cadastrais.
 
-• Expressões Regulares (Regex)
+## 3.Tecnologias Utilizadas
+• Linguagem: Java JDK 17+
 
-• IDE IntelliJ
-## Estrutura do Projeto
+• Estrutura de Dados: LinkedList Customizada (Implementação Própria)
 
-📦 CadastroClientes 
+• Processamento de Texto: Expressões Regulares (Regex) para validações complexas
 
- ┣ 📂 src
+• Gerenciamento de Fluxo: Java Collections Framework (Iterator)
 
- ┃ ┣ 📜 Main.java
+• Paradigma: Programação Orientada a Objetos (POO)
+
+## 4. Estrutura do Projeto
+
+    📦 CadastroClientes
+     ┣ 📂 src
+     ┃ ┗ 📂 com
+     ┃   ┗ 📂 cadastroclientes
+     ┃     ┣ 📂 datastructures
+     ┃     ┃ ┗ 📜 LinkedList.java
+     ┃     ┣ 📂 main
+     ┃     ┃ ┗ 📜 Main.java
+     ┃     ┣ 📂 model
+     ┃     ┃ ┗ 📜 Customer.java
+     ┃     ┣ 📂 repository
+     ┃     ┃ ┗ 📜 Repository.java
+     ┃     ┣ 📂 service
+     ┃     ┃ ┗ 📜 Service.java
+     ┃     ┗ 📂 util
+     ┃       ┗ 📜 Validator.java
+     ┣ 📜 .gitignore
+     ┣ 📜 LICENSE
+     ┗ 📜 README.md
  
- ┃ ┣ 📜 Customer.java
- 
- ┃ ┣ 📜 Repository.java
- 
- ┃ ┣ 📜 Service.java
 
- ┃ ┣ 📜 Validator.java 
+## 5. Descrição das Classes
 
- ┣ 📜 .gitignore
+### 5.1. Customer.java
 
- ┣ 📜 LICENSE
- 
- ┗ 📜 README.md
- 
+Classe de modelo (POJO) que representa a entidade Cliente. Possui os atributos id, name, email e phone. O campo id é definido como final, assegurando a imutabilidade da identidade do objeto após sua criação no sistema.
 
-## Descrição das Classes
+### 5.2. LinkedList.java
 
-• Customer.java → Classe modelo que representa a entidade Cliente, com atributos encapsulados e validação de ID imutável.
+Uma implementação autoral de lista encadeada simples. Diferencia-se das coleções padrão do Java por ser otimizada para o contexto do projeto, incluindo suporte à interface Iterable, permitindo o uso de loops for-each e garantindo controle total sobre a manipulação dos nós.
 
-• Repository.java → Implementa o padrão Repository, responsável por gerenciar a coleção de clientes em memória (ArrayList), garantindo a imutabilidade na recuperação de listas.
+### 5.3. Repository.java
 
-• Service.java → Contém as regras de negócio e validações complexas, orquestrando as operações CRUD e utilizando injeção de dependência do Repository.
+Atua como a camada de persistência em memória. Gerencia a instância da LinkedList, isolando as operações de baixo nível (salvamento, busca e deleção) das regras de negócio da aplicação.
 
-• Validator.java → Classe utilitária estática para validação de entrada de dados (nome, email, telefone, ID) utilizando expressões regulares e constantes de limite.
+### 5.4. Service.java
 
-• Main.java → Classe principal que fornece a interface de usuário via console, gerencia o fluxo do programa e trata as interações do usuário.
+Concentra a inteligência do sistema. É responsável pela geração automática de IDs, controle do fluxo de operações e aplicação de regras de negócio críticas, como a proibição de e-mails duplicados durante a criação ou atualização de registros.
 
-## Como Executar o Projeto
-### 1️) Clonar o repositório
-Abra o terminal local, copie e cole o comando abaixo:
+### 5.5. Validator.java
 
-git clone https://github.com/GuilhermeMAzevedo/CadastroClientes.git
-### 2️) Abrir na IDE
+Classe utilitária que utiliza Regex e constantes predefinidas para validar a integridade dos dados. Define limites de caracteres e formatos específicos para nomes, e-mails e telefones, impedindo a entrada de dados inconsistentes no sistema.
 
-Importe o projeto na sua IDE de preferência (Ex: IntelliJ IDEA).
+### 5.6. Main.java
 
-### 3️) Compilar e executar
+Ponto de entrada da aplicação. Gerencia a interface CLI e utiliza blocos try-catch extensivos para tratar exceções, garantindo que erros de entrada não interrompam a execução do programa.
 
-Navegue até a pasta raiz do projeto no terminal.
-Compile o código-fonte:
-javac src/*.java
-Execute a aplicação:
-java src/Main.java
-Alternativamente, execute diretamente pela sua IDE.
+## 6. Conceitos de POO Aplicados
 
-## Exemplo de Uso
+• Encapsulamento: Atributos privados com acesso controlado via métodos públicos.
 
-Ao executar o programa, o sistema exibirá um menu como:
+• Abstração: Complexidade da estrutura de dados oculta por trás de interfaces simples.
 
-### ==========MENU==========
+• SRP (Single Responsibility Principle): Cada classe possui uma única razão para mudar.
 
-### 1 - Cadastrar Cliente
+• Injeção de Dependência: O Service recebe o Repository via construtor, facilitando testes e manutenção.
 
-### 2 - Listar Clientes
+• Tratamento de Exceções: Uso estratégico de IllegalArgumentException para sinalizar violações de regras de negócio.
 
-### 3 - Atualizar Dados de um Cliente
+## 7. Melhorias Futuras
 
-### 4 - Deletar Cliente
+1. Persistência de Dados: Implementação de salvamento em arquivos CSV ou banco de dados SQL.
 
-### 5 - Buscar Cliente por ID
+2. Interface Gráfica (GUI): Desenvolvimento de uma camada visual utilizando JavaFX ou Swing.
 
-### 0 - Sair
+3. Busca Avançada: Implementação de algoritmos de busca por nome ou parte do e-mail.
 
-### ========================
-
-### Digite a sua escolha:
-
-Siga as instruções para interagir com o sistema, cadastrando, listando, atualizando, deletando ou buscando clientes.
-## Conceitos de POO Aplicados
-
-• Encapsulamento: Atributos das classes são privados e acessados/modificados por métodos públicos (getters e setters), protegendo o estado interno dos objetos. O id do Customer é final, garantindo a imutabilidade.
-
-• Abstração: Separação clara das responsabilidades entre as camadas (Model, Repository, Service), onde cada classe expõe apenas o essencial para sua função.
-
-• Responsabilidade Única (SRP): Cada classe possui uma única responsabilidade bem definida: Customer (dados), Repository (persistência em memória), Service (regras de negócio), Validator (validação de dados), Main (interface de usuário).
-
-• Injeção de Dependência: O Service recebe uma instância de Repository via construtor, promovendo baixo acoplamento e facilitando testes. 
-
-• Tratamento de Exceções: Uso de try-catch para gerenciar erros de entrada do usuário e validações, fornecendo feedback claro e mantendo a robustez do sistema.
-
-• Padrões de Projetos: Implementação dos padrões Repository e Service para organizar a lógica de acesso a dados e regras de negócio. Validator como Utility Class.
-## Melhorias Futuras
-
-• Persistência de Dados: Implementar armazenamento em arquivo (CSV, JSON) ou banco de dados (SQL, NoSQL) para que os dados não sejam perdidos ao encerrar o programa.
-
-• Interface Gráfica (GUI): Desenvolver uma interface de usuário mais amigável utilizando frameworks como Swing, JavaFX ou Spring Boot com web.
-
-• Estruturas de Dados Avançadas: Explorar a aplicação de estruturas de dados como Listas Encadeadas ou Filas de Prioridade para otimizar operações específicas.
-
-•Testes Unitários: Adicionar testes automatizados para garantir a correção e a robustez das funcionalidades do sistema.
 ## Autor
 
 Guilherme Moreira Azevedo
