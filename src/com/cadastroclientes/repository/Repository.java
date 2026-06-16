@@ -17,18 +17,24 @@ public class Repository {
     }
 
     public Customer findById(String id){
-        for (int i = 0; i < linkedList.getSize(); i++) {
-            if (linkedList.get(i).getId().equals(id)){
-                return linkedList.get(i);
+        for (Customer customer : linkedList) {
+            if (customer.getId().equals(id)){
+                return customer;
             }
         }
-
         return null;
     }
 
     public void deleteById(String id){
-        Customer customer = findById(id);
-        linkedList.remove(linkedList.search(customer));
+        int index = 0;
+        for (Customer customer : linkedList) {
+            if (customer.getId().equals(id)){
+                linkedList.remove(index);
+                return;
+            }
+            index++;
+        }
+        throw new IllegalArgumentException("Cliente não encontrado");
     }
 
     public void updateById(String id, String name, String email, String phone){
