@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements Iterable<T> {
-    private class Node{
+    private static class Node<T>{
         private T data;
-        private Node next;
-        private Node prev;
+        private Node<T> next;
+        private Node<T> prev;
         public Node(T data){
             this.data = data;
             this.next = null;
@@ -15,8 +15,8 @@ public class LinkedList<T> implements Iterable<T> {
         }
     }
 
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
     public LinkedList(){
@@ -35,10 +35,10 @@ public class LinkedList<T> implements Iterable<T> {
 
     public void addFirst(T data){
         if (isEmpty()){
-            head = new Node(data);
+            head = new Node<>(data);
             tail = head;
         } else {
-            Node node = new Node(data);
+            Node<T> node = new Node<>(data);
             node.next = head;
             head.prev = node;
             head = node;
@@ -54,8 +54,8 @@ public class LinkedList<T> implements Iterable<T> {
         } else if (index == size){
             addLast(data);
         } else if (index < size / 2){
-            Node node = new Node(data);
-            Node current = head;
+            Node<T> node = new Node<>(data);
+            Node<T> current = head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
@@ -65,8 +65,8 @@ public class LinkedList<T> implements Iterable<T> {
             node.prev = current;
             size++;
         } else {
-            Node node = new Node(data);
-            Node current = tail;
+            Node<T> node = new Node<>(data);
+            Node<T> current = tail;
             for (int i = size - 1; i > index; i--) {
                 current = current.prev;
             }
@@ -82,7 +82,7 @@ public class LinkedList<T> implements Iterable<T> {
         if (isEmpty()){
             addFirst(data);
         } else {
-            Node node = new Node(data);
+            Node<T> node = new Node<>(data);
             tail.next = node;
             node.prev = tail;
             tail = node;
@@ -116,7 +116,7 @@ public class LinkedList<T> implements Iterable<T> {
         } else if (index == size - 1) {
             return removeLast();
         } else if (index < size / 2){
-            Node current = head;
+            Node<T> current = head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
@@ -126,7 +126,7 @@ public class LinkedList<T> implements Iterable<T> {
             size--;
             return dataRemoved;
         } else {
-            Node current = tail;
+            Node<T> current = tail;
             for (int i = size - 1; i > index + 1; i--) {
                 current = current.prev;
             }
@@ -158,13 +158,13 @@ public class LinkedList<T> implements Iterable<T> {
         } else if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Posição inválida");
         } else if (index < size / 2){
-            Node current = head;
+            Node<T> current = head;
             for (int i = 0; i < index; i++) {
                 current = current.next;
             }
             return current.data;
         } else {
-            Node current = tail;
+            Node<T> current = tail;
             for (int i = size - 1; i > index; i--) {
                 current = current.prev;
             }
@@ -173,7 +173,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public int search(T data){
-        Node current = head;
+        Node<T> current = head;
         int index = 0;
         while (current != null){
             if (current.data.equals(data)){
@@ -186,7 +186,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public boolean contains(T data){
-        Node current = head;
+        Node<T> current = head;
         while (current != null){
             if (current.data.equals(data)){
                 return true;
@@ -220,7 +220,7 @@ public class LinkedList<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator(){
         return new Iterator<T>(){
-            private Node current = head;
+            Node<T> current = head;
 
             @Override
             public boolean hasNext(){
